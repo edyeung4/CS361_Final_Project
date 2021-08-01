@@ -13,13 +13,15 @@ class WebDriver:
 	location_data = {}
 
 	def __init__(self):
-		self.PATH = "C:/Users/Edwardnese/Downloads/chromedriver_win32/chromedriver.exe"
+		# self.PATH = '/Users/Edwardnese/Documents/OSU/CS 361/CS361_Final_Project/chromedriver'
+		self.PATH = '/Users/Edwardnese/Downloads/chromedriver'
+		# self.PATH = '../CS361'
 		self.options = Options()
 		# self.options.binary_location = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
 		self.options.add_argument("--headless")
 		self.driver = webdriver.Chrome(self.PATH, options=self.options)
 
-		self.location_data["rating"] = "NA"
+		self.location_data["rating"] = []
 		self.location_data["reviews_count"] = "NA"
 		self.location_data["location"] = "NA"
 		self.location_data["contact"] = "NA"
@@ -55,23 +57,42 @@ class WebDriver:
 	def get_location_data(self):
 
 		try:
-			avg_rating = self.driver.find_element_by_class_name("section-star-array")
+			avg_rating = self.driver.find_elements_by_class_name("OEvfgc-wcwwM-haAclf")
+			biz_name = self.driver.find_elements_by_class_name("qBF1Pd-haAclf")
+			# biz_name = self.driver.find_elements_by_class_name("qBF1Pd-haAclf")
 			# total_reviews = self.driver.find_element_by_class_name("section-rating-term")
-			address = self.driver.find_element_by_css_selector("[data-item-id='address']")
+			# address = self.driver.find_element_by_css_selector("[data-item-id='address']")
 			# phone_number = self.driver.find_element_by_css_selector("[data-tooltip='Copy phone number']")
 			# website = self.driver.find_element_by_css_selector("[data-item-id='authority']")
 			print('hello')
-			print(address.get_attribute('innerText'))
+			# print(len(biz_name))
+			# for name in biz_name:
+			# 	print(name.get_attribute('innerText'))
+			# creates list of business names
+			# print(avg_rating[6].get_attribute('innerText'))
+			for rating in avg_rating:
+				print(rating.get_attribute('innerText'))
+			rating_list = [x.get_attribute('innerText') for x in avg_rating]
+			# print(rating_list, len(rating_list))
+			name_list = [x.get_attribute('innerText') for x in biz_name]
+			print(name_list, len(name_list))
+			# print(biz_name.innerText)
+			# for name in biz_name:
+				# print(name)
+			# print(biz_name[0].get_attribute('innerText'))
+			# print(biz_name[0].get_attribute('innerText'))
+			# print(address.get_attribute('innerText'))
 
 		except:
-			# print('here')
+			print('except here')
 			pass
 		try:
 			print('update is working?')
 			# print(address.get_attribute('innerText'))
 			# x = address.get_attribute('innerText')
 			# print(x)
-			self.location_data["rating"] = avg_rating.text
+			self.location_data["rating"] = rating_list
+			print(rating_list, len(rating_list))
 			# self.location_data["reviews_count"] = total_reviews.text[1:-1]
 			self.location_data["location"] = address.get_attribute('innerText')
 			print(self.location_data["location"])
@@ -187,8 +208,11 @@ class WebDriver:
 		self.driver.quit()
 
 		return(self.location_data)
-
-url = "https://www.google.com/maps/place/AF+Supply/@40.1408595,-74.4915335,8z/data=!4m9!1m2!2m1!1splumbers+near+07029!3m5!1s0x89c25387d0144d67:0xc278946f870c671c!8m2!3d40.7382148!4d-74.1597072!15sChNwbHVtYmVycyBuZWFyIDA3MDI5WhUiE3BsdW1iZXJzIG5lYXIgMDcwMjmSARVwbHVtYmluZ19zdXBwbHlfc3RvcmU"
+service = 'plumber'
+zipcode = '11357'
+url = "https://www.google.com/maps/search/" + service + "+near+" + zipcode
+# url = "https://www.google.com/maps/place/AF+Supply/@40.1408595,-74.4915335,8z/data=!4m9!1m2!2m1!1splumbers+near+07029!3m5!1s0x89c25387d0144d67:0xc278946f870c671c!8m2!3d40.7382148!4d-74.1597072!15sChNwbHVtYmVycyBuZWFyIDA3MDI5WhUiE3BsdW1iZXJzIG5lYXIgMDcwMjmSARVwbHVtYmluZ19zdXBwbHlfc3RvcmU"
+# print(url)
 x = WebDriver()
 print(x.scrape(url))
 
