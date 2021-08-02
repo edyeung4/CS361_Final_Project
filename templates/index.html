@@ -25,19 +25,22 @@
         <div class="inner">
           <h3 class="masthead-brand">Handyman Service Finder</h3>
           <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="#">Home</a>
-            <!-- <a class="nav-link" href="#">Features</a> -->
-            <!-- <a class="nav-link" href="#">Contact</a> -->
+            <a class="nav-link active" href="/index">Home</a>
           </nav>
         </div>
       </header>
 
       <main role="main" class="inner cover">
+        
         <h1 class="cover-heading">Welcome to Handyman Service Finder</h1>
+        
         <p class="lead">All-in-one page where you can find any handyman service suitable for your needs</p>
         <p class="lead">Please select a service</p>
         <p class="lead">
-          <a href="#" class="btn btn-lg btn-secondary">Plumbing</a>
+          <form action="/service_submission" method="POST">
+          <input class="btn btn-lg btn-secondary" name="serviceType" type="submit" value="Plumbing">
+          <!-- <button class="btn btn-lg btn-secondary" name='serviceType' type="submit">Plumbing</button> -->          
+          <!-- <button href="#" class="btn btn-lg btn-secondary">Plumbing</a> -->
           <a href="#" class="btn btn-lg btn-secondary">Electrical</a>
           <a href="#" class="btn btn-lg btn-secondary">Painting</a>
         </p>
@@ -55,6 +58,7 @@
         <p>
           <a href="#" class="btn btn-lg btn-secondary btn-secondary-adv">Advanced</a>
         </p>
+      </form>
       </main>
 
       <footer class="mastfoot mt-auto">

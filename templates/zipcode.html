@@ -25,9 +25,7 @@
         <div class="inner">
           <!-- <h3 class="masthead-brand">Handyman Service Finder</h3> -->
           <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="#">Home</a>
-            <!-- <a class="nav-link" href="#">Features</a> -->
-            <!-- <a class="nav-link" href="#">Contact</a> -->
+            <a class="nav-link active" href="/index">Home</a>
           </nav>
         </div>
       </header>
@@ -36,12 +34,13 @@
         <h1 class="cover-heading">Handyman Service Finder</h1> 
         <p class="lead"><a href="#" class="btn btn-md btn-secondary btn-secondary-resel">Reselect Service</a></p>
         <p class="lead">Please enter in your zipcode</p>
-        <form class="form">
+        <form action="/zipcode_submission" method="POST">
         <div class="form-group mx-sm-3 mb-2">
           <label for="inputZipcode" class="sr-only">zipcode</label>
-          <input type="text" class="form-control" id="inputZipcode" placeholder="e.g. 08023">
+          <input type="text" class="form-control" name="inputZipcode" id="inputZipcode" placeholder="e.g. 08023">
         </div>
-        <p class="lead"><a href="#" class="btn btn-lg btn-secondary">Submit</a></p>
+        <button class="btn btn-lg btn-secondary" type="submit">Submit</button>
+        <!-- <p class="lead"><a href="#" class="btn btn-lg btn-secondary">Submit</a></p> -->
       </form>
         <!-- <p class="lead">
           <a href="#" class="btn btn-lg btn-secondary">Plumbing</a>
