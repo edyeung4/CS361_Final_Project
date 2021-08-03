@@ -21,6 +21,7 @@ class WebDriver:
 		self.options.add_argument("--headless")
 		self.driver = webdriver.Chrome(self.PATH, options=self.options)
 
+		self.location_data['name'] = []
 		self.location_data["rating"] = []
 		# self.location_data["reviews_count"] = "NA"
 		self.location_data['business_descrip'] = []
@@ -81,7 +82,7 @@ class WebDriver:
 			rating_list = [x.get_attribute('innerText') for x in avg_rating]
 			# print(rating_list, len(rating_list))
 			name_list = [x.get_attribute('innerText') for x in biz_name]
-			print(name_list, len(name_list))
+			# print(name_list, len(name_list))
 			# print(biz_name.innerText)
 			# for name in biz_name:
 				# print(name)
@@ -104,7 +105,8 @@ class WebDriver:
 			# x = address.get_attribute('innerText')
 			# print(x)
 			self.location_data["rating"] = rating_list
-			print(rating_list, len(rating_list))
+			# print(rating_list, len(rating_list))
+			self.location_data['name'] = name_list
 			# self.location_data["reviews_count"] = total_reviews.text[1:-1]
 			self.location_data["location"] = address.get_attribute('innerText')
 			print(self.location_data["location"])
@@ -201,8 +203,8 @@ class WebDriver:
 
 	def scrape(self, service, zipcode):
 		try:
-			service = 'plumber'
-			zipcode = '11357'
+			# service = 'plumber'
+			# zipcode = '11357'
 			url = "https://www.google.com/maps/search/" + service + "+near+" + zipcode
 			print(url)
 			self.driver.get(url)
@@ -229,5 +231,5 @@ class WebDriver:
 # zipcode = '11357'
 # url = "https://www.google.com/maps/search/" + service + "+near+" + zipcode
 # url = "https://www.google.com/maps/place/AF+Supply/@40.1408595,-74.4915335,8z/data=!4m9!1m2!2m1!1splumbers+near+07029!3m5!1s0x89c25387d0144d67:0xc278946f870c671c!8m2!3d40.7382148!4d-74.1597072!15sChNwbHVtYmVycyBuZWFyIDA3MDI5WhUiE3BsdW1iZXJzIG5lYXIgMDcwMjmSARVwbHVtYmluZ19zdXBwbHlfc3RvcmU"
-x = WebDriver()
-print(x.scrape('plumber', '11357'))
+# x = WebDriver()
+# print(x.scrape('plumber', '11357'))

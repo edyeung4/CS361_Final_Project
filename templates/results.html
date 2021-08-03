@@ -34,8 +34,30 @@
 
       <main role="main" class="inner cover">
         <h1 class="cover-heading">Handyman Service Finder</h1> 
-        <p class="lead"><a href="#" class="btn btn-md btn-secondary btn-secondary-resel">Reselect Service</a></p>
-        <p class="lead">List of local services near you</p>
+        <p class="lead"><a href="/index" class="btn btn-md btn-secondary btn-secondary-resel">Reselect Service</a></p>
+        <p class="lead">List of local {{service}} services near you</p>
+        <form action="/service_selection" method="POST">
+        {% for name, descrip in name_bizDescrip %}
+        <table class="table">
+          <tr>
+            <td><input type="hidden" name="name" value="{{name}}">{{name}}
+              <br>
+              <input type="hidden" name="descrip" value="{{descrip}}">{{descrip}}
+            </td>
+            <td><button class="btn btn-lg btn-secondary" type="submit">Select</button></td>
+          </tr>
+        </table>
+        {% endfor %}
+        </form>
+        <!-- <ol>
+          {% for name, descrip in name_bizDescrip %}
+          <li>
+            <p>{{name}}</p>
+            <p>{{descrip}}</p>
+          </li>
+          {% endfor %}
+        </ol> -->
+
         <!-- <form class="form">
         <div class="form-group mx-sm-3 mb-2">
           <label for="inputZipcode" class="sr-only">zipcode</label>
