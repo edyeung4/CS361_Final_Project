@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, jsonify
 # from database.db_connector import connect_to_database, execute_query
 import os
+import requests
 from gmaps_scraper import WebDriver
 
 # Configuration
@@ -40,8 +41,10 @@ def zipcode_submit():
 	gmaps_scraper = WebDriver()
 	results = gmaps_scraper.scrape(service_type, zipcode_input)
 	print(results)
+	temp_req = requests.get(f"https://cs361-weather-service.herokuapp.com/current?zipcode={zipcode_input}")
+	temperature = temp_req.json()['temp']
 
-	return render_template('results.html', service=service_type, name_bizDescrip=zip(results['name'], results['business_descrip']))
+	return render_template('results.html', temp=temperature, service=service_type, name_bizDescrip=zip(results['name'], results['business_descrip']))
 
 @app.route('/service_selection', methods=['POST'])
 def service_select():

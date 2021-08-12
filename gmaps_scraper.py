@@ -42,6 +42,21 @@ class WebDriver:
 			self.driver.implicitly_wait(5)
 			ActionChains(self.driver).move_to_element(element).click(element).perform()
 
+	def get_location_open_close_time(self):
+
+		try:
+			days = self.driver.find_elements_by_class_name("lo7U087hsMA__row-header")
+			times = self.driver.find_elements_by_class_name("lo7U087hsMA__row-interval")
+
+			day = [a.text for a in days]
+			open_close_time = [a.text for a in times]
+
+			for i, j in zip(day, open_close_time):
+				self.location_data["Time"][i] = j
+		
+		except:
+			pass
+			
 	def click_all_reviews_button(self):
 
 		try:
