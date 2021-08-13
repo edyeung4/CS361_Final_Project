@@ -16,6 +16,7 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/css/cover.css" rel="stylesheet">
+
   </head>
 
   <body class="text-center">
@@ -38,27 +39,26 @@
         <p class="lead">Please select a service</p>
         <p class="lead">
           <form action="/service_submission" method="POST">
-          <input class="btn btn-lg btn-secondary" name="serviceType" type="submit" value="Plumbing">
-          <!-- <button class="btn btn-lg btn-secondary" name='serviceType' type="submit">Plumbing</button> -->          
-          <!-- <button href="#" class="btn btn-lg btn-secondary">Plumbing</a> -->
-          <a href="#" class="btn btn-lg btn-secondary">Electrical</a>
-          <a href="#" class="btn btn-lg btn-secondary">Painting</a>
+          <input class="btn btn-lg btn-secondary" name="serviceType" type="submit" value="Plumbing" data-toggle="tooltip" data-placement="top" title="e.g. HVAC, Gas lines, Fixtures, pipes, valves, tanks">
+          <input class="btn btn-lg btn-secondary" name="serviceType" type="submit" value="Electrical" data-toggle="tooltip" data-placement="top" title="e.g. Powerlines, light bulbs, outlet modifications, generator, modify wiring">
+          <!-- <a href="#" class="btn btn-lg btn-secondary">Painting</a> -->
+          <input class="btn btn-lg btn-secondary" name="serviceType" type="submit" value="Painting" data-toggle="tooltip" data-placement="top" title="e.g. Interior, Exterior paint, automobile, furniture">
         </p>
         <p class="lead">
-          <a href="#" class="btn btn-lg btn-secondary">Appliance Repair</a>
-          <a href="#" class="btn btn-lg btn-secondary">General Maintenance</a>
-          <a href="#" class="btn btn-lg btn-secondary">Furniture Assembly</a>
+          <input class="btn btn-lg btn-secondary" name="serviceType" type="submit" value="Appliance Repair" data-toggle="tooltip" data-placement="top" title="e.g. Stove, Microwave, Dishwasher, Oven-range">
+          <input class="btn btn-lg btn-secondary" name="serviceType" type="submit" value="General Maintenance" data-toggle="tooltip" data-placement="top" title="e.g. Mounting fixtures, Sheetrock Repair, Flooring Repair">
+          <input class="btn btn-lg btn-secondary" name="serviceType" type="submit" value="Furniture Assembly" data-toggle="tooltip" data-placement="top" title="e.g. Ikea Assembly, Wayfair Assembly">
         </p>
         <p class="lead">
-          <a href="#" class="btn btn-lg btn-secondary">Cleaning</a>
-          <a href="#" class="btn btn-lg btn-secondary">Moving</a>
-          <!-- <a href="#" class="btn btn-lg btn-secondary">Furniture Assembly</a> -->
-        </p>
-        <br>
-        <p>
-          <a href="#" class="btn btn-lg btn-secondary btn-secondary-adv">Advanced</a>
+          <input class="btn btn-lg btn-secondary" name="serviceType" type="submit" value="Cleaning" data-toggle="tooltip" data-placement="top" title="e.g. Home cleaning, Move-out cleaning, Construction cleaning">
+          <input class="btn btn-lg btn-secondary" name="serviceType" type="submit" value="Moving" data-toggle="tooltip" data-placement="top" title="e.g. Auotmobile moving, Out-of-state moving, Local moving, Home moving">
         </p>
       </form>
+        <br>
+        <p>
+          <a href="/service_submission_adv" class="btn btn-lg btn-secondary btn-secondary-adv" data-toggle="tooltip" data-placement="top" title="Allows Users to Manually Enter in Service Not Shown">Advanced</a>
+        </p>
+      
       </main>
 
       <footer class="mastfoot mt-auto">
@@ -81,5 +81,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../static/js/bootstrap_features.js"></script>  
   </body>
 </html>

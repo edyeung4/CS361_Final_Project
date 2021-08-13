@@ -32,8 +32,33 @@
 
       <main role="main" class="inner cover">
         <h1 class="cover-heading">Handyman Service Finder</h1> 
-        <p class="lead"><a href="/index" class="btn btn-md btn-secondary btn-secondary-resel">Reselect Service</a></p>
-        <p class="lead">Please enter in your zipcode</p>
+        <p class="lead"><a style="color: #333;" class="btn btn-md btn-secondary btn-secondary-resel" data-toggle="modal"
+          data-target="#exampleModal">Reselect Service</a></p>
+        
+        <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 style="color: #333;" id="exampleModalLabel">Are you sure you want to reselect service</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <a href="/index" style="background-color: rgba(194, 55, 55, 0.842);" class="btn btn-primary">Yes</a>
+            <!-- <button type="button" class="btn btn-primary">Yes</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+        
+          <p class="lead">Please enter in your zipcode</p>
         <form action="/zipcode_submission" method="POST">
         <div class="form-group mx-sm-3 mb-2">
           <label for="inputZipcode" class="sr-only">zipcode</label>
@@ -69,7 +94,6 @@
       </footer>
     </div>
 
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -82,5 +106,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../static/js/bootstrap_features.js"></script> 
   </body>
 </html>
