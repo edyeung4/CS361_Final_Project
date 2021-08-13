@@ -34,10 +34,6 @@ def service_submit():
 
 @app.route('/service_submission_adv')
 def service_submit_adv():
-	# global service_type
-	# service_type = request.form["serviceType"]
-	# print("Service chosen =", service_type)
-	# print(service_type)
 	return render_template('zipcode _adv.html')
 
 @app.route('/zipcode_submission', methods=['POST'])
@@ -45,14 +41,14 @@ def zipcode_submit():
 	global service_type
 	zipcode_input = request.form["inputZipcode"]
 	print('Zipcode entered =', zipcode_input)
-	# print(service_type)
 	gmaps_scraper = WebDriver()
 	results = gmaps_scraper.scrape(service_type, zipcode_input)
 	print(results)
 	temp_req = requests.get(f"https://cs361-weather-service.herokuapp.com/current?zipcode={zipcode_input}")
 	temperature, temp_icon = temp_req.json()['temp'], temp_req.json()['icon']
 
-	return render_template('results.html', temp=temperature, temp_icon=temp_icon, service=service_type, name_bizDescrip=zip(results['name'], results['business_descrip']))
+	return render_template('results.html', temp=temperature, temp_icon=temp_icon, service=service_type, 
+	name_bizDescrip=zip(results['name'], results['business_descrip']))
 
 @app.route('/zipcode_submission_adv', methods=['POST'])
 def zipcode_submit_adv():

@@ -227,7 +227,7 @@ class WebDriver:
 		except Exception as e:
 			self.driver.quit()
 			# continue
-		time.sleep(10)
+		# time.sleep(10)
 
 		# self.click_open_close_time()
 		self.get_location_data()
