@@ -66,19 +66,22 @@
       <p class="laed">Current Weather</p>
       <!-- <p>{{temp}}deg <img src={{i_url}} width="50px" height="auto"></p>  -->
       <p>{{temp}}deg <img src="http://openweathermap.org/img/wn/{{temp_icon}}@2x.png" width="50px" height="auto"></p>
-      <form action="/service_selection" method="POST">
-        {% for name, descrip in name_bizDescrip %}
+      
+        {% for name, descrip, addy in name_bizDescrip %}
+        <form action="/service_selection" method="POST">
         <table class="table">
           <tr>
             <td><input type="hidden" name="name" value="{{name}}">{{name}}
               <br>
               <input type="hidden" name="descrip" value="{{descrip}}">{{descrip}}
+              <input type="hidden" name="addy" value="{{addy}}">
             </td>
-            <td><button class="btn btn-lg btn-secondary" type="submit">Select</button></td>
+            <td><button class="btn btn-lg btn-secondary" name="submit" type="submit" >Select</button></td>
           </tr>
         </table>
+        </form>
         {% endfor %}
-      </form>
+      
       <!-- <ol>
           {% for name, descrip in name_bizDescrip %}
           <li>

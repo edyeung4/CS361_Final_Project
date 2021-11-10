@@ -67,7 +67,8 @@
       <!-- <input type="hidden" name="descrip" value="{{descrip}}"> -->
       <p id="name">{{name}}</p>
       <p id="descrip">{{descrip}}</p>
-
+      <input type="hidden" value="https://nominatim.openstreetmap.org/search?q={{addy}} {{zipcode}}&format=json&polygon_geojson=1&addressdetails=1">
+      <input type="hidden" value="http://open.mapquestapi.com/geocoding/v1/address?key=acRpWoCf4rcWlSAvIP0gNrgc6g8NY0X5&location={{addy}} {{zipcode}}">
       <!-- <form class="form">
         <div class="form-group mx-sm-3 mb-2">
           <label for="inputZipcode" class="sr-only">zipcode</label>
@@ -76,8 +77,10 @@
         <p class="lead"><a href="#" class="btn btn-lg btn-secondary">Submit</a></p>
       </form> -->
 
-      <body style='margin: 0'>
-        <div style="width: 100%; height: 100%" id="mapContainer"></div>
+      <!-- <body style='margin: 0'>
+        <div style="width: 100%; height: 100%" id="mapContainer"></div> -->
+
+        <div id="osm-map"></div>
     </main>
 
     <footer class="mastfoot mt-auto">
@@ -107,31 +110,106 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+  <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyASoxUp-_2DrUF3VIpTuLPLTxlgHQyvnQQ"></script> -->
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet"/>  
   <script>
+    // nominatim open street map api to get Lat and Long of chose address
+    var lat;
+    var long;
+
+    function getJson(data){
+    var jsondata;
+    jsondata = data.results[0].locations[0].latLng
+    lat = jsondata.lat
+    long = jsondata.lng
+    console.log(jsondata)
+    // console.log(lat, long)
+    // console.log(lat.toString())
+    mapRender(lat, long)
+}
+  console.log(lat)
+    // const url = 'https://nominatim.openstreetmap.org/search?q={{addy}}&format=json&polygon_geojson=1&addressdetails=1';
+    // const url = 'https://nominatim.openstreetmap.org/?addressdetails=1&q=bakery+in+berlin+wedding&format=json&limit=1';
+    const url = 'http://open.mapquestapi.com/geocoding/v1/address?key=acRpWoCf4rcWlSAvIP0gNrgc6g8NY0X5&location={{addy}} {{zipcode}}'
+    fetch(url)
+    .then(data=>{return data.json()})
+    .then(results => getJson(results))
+
+
+    // osm render
+    function mapRender(lat, long){
+    // Where you want to render the map.
+    var element = document.getElementById('osm-map');
+    if ('{{addy}}' == ' ') {
+      element.style.display = 'none'
+    }
+    else{
+      // Height has to be set. You can do this in CSS too.
+      element.style = 'height:300px;';
+
+      // Create Leaflet map on map element.
+      var map = L.map(element);
+
+      // Add OSM tile layer to the Leaflet map.
+      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      // Target's GPS coordinates.
+      var target = L.latLng( lat, long);
+
+      // Set map's center to target with zoom 14.
+      map.setView(target, 14);
+
+      // Place a marker on the same location.
+      L.marker(target).addTo(map);
+    }
+
+    
+    }
+    
+
+    // get lat and long based on address
+    // var geocoder = new google.maps.Geocoder();
+    // var address = "new york";
+
+    // geocoder.geocode( { 'address': address}, function(results, status) {
+
+    // if (status == google.maps.GeocoderStatus.OK) {
+    //     var latitude = results[0].geometry.location.lat();
+    //     var longitude = results[0].geometry.location.lng();
+    //     alert(latitude);
+    //     } 
+    // }); 
+    // console.log(latitude)
+    // console.log(longitude)
+
+
     // Initialize the platform object:
-    var platform = new H.service.Platform({
-      'apikey': 'pFR9PbiqimB9IJKTeFhQ-H0jdhYkxouTEVEp4uc8VQI'
-    });
-    // var user_lat = document.getElementById()
-    const lat = 40.832410;
-    const long = -73.830440;
+    // var platform = new H.service.Platform({
+    //   'apikey': 'pFR9PbiqimB9IJKTeFhQ-H0jdhYkxouTEVEp4uc8VQI'
+    // });
+    // // var user_lat = document.getElementById()
+    // const lat = 40.832410;
+    // const long = -73.830440;
 
-    // Obtain the default map types from the platform object
-    var maptypes = platform.createDefaultLayers();
+    // // Obtain the default map types from the platform object
+    // var maptypes = platform.createDefaultLayers();
 
-    // Instantiate (and display) a map object:
-    var map = new H.Map(
-      document.getElementById('mapContainer'),
-      maptypes.vector.normal.map,
-      {
-        zoom: 10,
-        center: { lat: lat, lng: long }
-      });
+    // // Instantiate (and display) a map object:
+    // var map = new H.Map(
+    //   document.getElementById('mapContainer'),
+    //   maptypes.vector.normal.map,
+    //   {
+    //     zoom: 10,
+    //     center: { lat: lat, lng: long }
+    //   });
 
-    var marker = new H.map.Marker({ lat: lat, lng: long });
+    // var marker = new H.map.Marker({ lat: lat, lng: long });
 
-    // Add the marker to the map:
-    map.addObject(marker);
+    // // Add the marker to the map:
+    // map.addObject(marker);
 
   </script>
 </body>
