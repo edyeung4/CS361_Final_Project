@@ -29,10 +29,12 @@ def index():
 @app.route('/service_submission', methods=['POST'])
 def service_submit():
 	global service_type
+	global zipcode_input
 	service_type = request.form["serviceType"]
 	print("Service chosen =", service_type)
 	print(service_type)
-	return render_template('zipcode.html')
+
+	return render_template('zipcode.html', service=service_type)
 
 @app.route('/service_submission_adv')
 def service_submit_adv():
